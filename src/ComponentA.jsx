@@ -1,5 +1,8 @@
-import { useState } from 'react'
+import { useState, createContext } from 'react'
 import ComponentB from './ComponentB'
+
+// 1. Creating a context object
+export const UserContext = createContext()
 
 function ComponentA() {
 
@@ -9,7 +12,11 @@ function ComponentA() {
     <div className="box">
       <h1>ComponentA</h1>
       <h2>{`Hello ${user}`}</h2>
-      <ComponentB user={user} />
+
+      {/* 2. Providing a value to all children components */}
+      <UserContext.Provider value={user}>
+        <ComponentB />
+      </UserContext.Provider>
     </div>
   )
 }
